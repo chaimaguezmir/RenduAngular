@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="row">
+    <form #f="ngForm">
+      <div class="mb-3">
+        <label>Title : </label>
+        <input
+          type="text"
+          class="form-control"
+          name="title"
+          [(ngModel)]="category.title"
+          required
+          minlength="3"
+          #title="ngModel"
+        />
+        <!-- Composant de validation -->
+        <app-validation-messages
+          [control]="title"
+          [customMessages]="{
+            required: 'Title is required !',
+            minlength: 'Title must have at least 3 characters'
+          }"
+        ></app-validation-messages>
+      </div>
+
+      <div class="mb-3">
+        <label>Image :</label>
+        <input
+          type="text"
+          class="form-control"
+          name="image"
+          [(ngModel)]="category.image"
+          required
+          #image="ngModel"
+        />
+        <!-- Composant de validation -->
+        <app-validation-messages
+          [control]="image"
+          [customMessages]="{
+            required: 'Image is required !'
+          }"
+        ></app-validation-messages>
+      </div>
+
+      <div class="mb-3">
+        <label>Description :</label>
+        <input
+          type="text"
+          class="form-control"
+          name="description"
+          [(ngModel)]="category.description"
+          required
+          minlength="10"
+          #description="ngModel"
+        />
+        <!-- Composant de validation -->
+        <app-validation-messages
+          [control]="description"
+          [customMessages]="{
+            required: 'Description is required !',
+            minlength: 'Description must have at least 10 characters'
+          }"
+        ></app-validation-messages>
+      </div>
+
+      <div class="mb-3">
+        <input
+          type="submit"
+          class="btn btn-primary"
+          value="Submit"
+          (click)="add(f, title)"
+          [disabled]="f.invalid"
+        />
+      </div>
+    </form>
+  </div>
+</div>
